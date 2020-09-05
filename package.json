@@ -1,0 +1,12 @@
+{
+    "name": "lljs-16bitvm",
+    "version": "0.0.1",
+    "main": "index.js",
+    "private": true,
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "devDependencies": {
+        "eslint": "~7.8.1"
+    }
+}
