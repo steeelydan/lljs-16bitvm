@@ -38,7 +38,7 @@ class CPU {
             return this.memory.getUint8(address + i);
         }).map((content) => `0x${content.toString(16).padStart(2, '0')}`);
 
-        console.log(`Memory at ${address.toString(16).padStart(4, '0')}: ${next8Bytes.join(' ')}`);
+        console.log(`Memory at 0x${address.toString(16).padStart(4, '0')}: ${next8Bytes.join(' ')}`);
         console.log();
     }
 
@@ -123,6 +123,18 @@ class CPU {
                 const registerValue2 = this.registers.getUint16(r2 * 2);
 
                 this.setRegister('acc', registerValue1 + registerValue2);
+
+                return;
+            }
+
+            // Jump if not equal
+            case instructions.JMP_NOT_EQ: {
+                const value = this.fetch16();
+                const address = this.fetch16();
+
+                if (value !== this.getRegister('acc')) {
+                    this.setRegister('ip', address);
+                }
 
                 return;
             }
